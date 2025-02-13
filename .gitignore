@@ -1,0 +1,30 @@
+# Virtual Environment (venv)
+venv/
+Venv/
+.venv/
+env/
+.env/
+venv.bak/
+
+# Python Cache Files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+
+# Log Files
+*.log
+
+# Locust Reports
+*.csv
+*.html
+
+# IDE / Editor Files
+.vscode/
+.idea/
+*.swp
+
+# System Files
+.DS_Store
+Thumbs.db
