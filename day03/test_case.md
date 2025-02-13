@@ -73,20 +73,20 @@
 
 1️⃣ **Run a single-user test (`1 user`).**  
    ```sh
-   locust -f your_script.py --users 1 --spawn-rate 1 --headless
+   locust -f day03\test_validateResponse.py --users 1 --spawn-rate 1 --headless
    ```  
    - **Check logs and ensure all operations work.**  
    - **Fix any issues before increasing load.**  
 
 2️⃣ **Increase users to `10`, then `50`, then `100`**  
    ```sh
-   locust -f your_script.py --users 10 --spawn-rate 2 --headless
+   locust -f day03\test_validateResponse.py --users 10 --spawn-rate 2 --headless
    ```  
    - Monitor **response times, error rates, and logs**.  
 
 3️⃣ **Run a stress test (`500+ users`)**  
    ```sh
-   locust -f your_script.py --users 500 --spawn-rate 50 --headless
+   locust -f day03\test_validateResponse.py --users 500 --spawn-rate 50 --headless
    ```  
    - Identify **system bottlenecks (database, API rate limits, etc.)**.  
 
