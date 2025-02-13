@@ -51,3 +51,5 @@ class ReqresUser(HttpUser):
     wait_time = between(1, 5)  # Users wait between 1 to 5 seconds between requests
     host = "https://reqres.in"  # Base API URL for the test
     tasks = {ReqresUserTasks}  # Assigns the sequence of tasks to each user
+
+    #RUN: locust -f day03\test_validateResponse.py
