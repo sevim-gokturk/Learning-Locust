@@ -1,7 +1,7 @@
 # **Test Execution Report - Reqres API**
 
 ## **Test Summary**
-- **Test Date:** _(Insert Execution Date)_
+- **Test Date:** 17/02/2025
 - **Total Test Cases Executed:** 3
 - **Total Requests Sent:** 3
 - **Total Failures:** 0
