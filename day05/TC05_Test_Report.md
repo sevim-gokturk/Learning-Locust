@@ -44,14 +44,16 @@
 ---
 
 ## Conclusion 
-- **Test Outcome:** PASSED
+- **Test Outcome:** PASSED  
   
-<select>
-  <option value="PASSED" selected>PASSED</option>
-  <option value="FAILED" >FAILED</option>
-  <option value="BLOCKED" >BLOCKED</option>
-  <option value="NOT EXECUTED" >NOT EXECUTED</option>
-</select>
+<details>
+  <summary>Click to view outcome options</summary>
+
+- PASSED  
+- FAILED  
+- BLOCKED  
+- NOT EXECUTED  
+</details>
 
 - **Functional:** All CRUD operations passed with 0 failures.  
 - **Performance:** Performance issue: 95th percentile is 210.000 ms.  

@@ -7,6 +7,7 @@ import os
 # ==========================================
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 CONFIG_FILE = os.path.join(BASE_DIR, "config.json")
+# Use a relative path from BASE_DIR; adjust if needed.
 CSV_FILE = os.path.abspath(os.path.join(BASE_DIR, "../day5/performance_reports/2025-02-17_13-24-21/report_stats.csv"))
 OUTPUT_FILE = os.path.join(BASE_DIR, "TC05_Test_Report.md")
 
@@ -71,20 +72,17 @@ def generate_tc_report(csv_file, config_file, output_file, test_case_id, objecti
     functional_text = "All CRUD operations passed with 0 failures." if total_failures == 0 else f"Some operations failed with {total_failures} failures."
     performance_text = "The API performed within acceptable limits, with 95% of requests under 210 ms." if perc95 < 210 else f"Performance issue: 95th percentile is {perc95:.3f} ms."
     
-    # Create an HTML dropdown snippet for test outcome selection
+    # Create an HTML dropdown snippet using <details> for outcome options
     outcome_dropdown = """
-<select>
-  <option value="PASSED" {passed}>PASSED</option>
-  <option value="FAILED" {failed}>FAILED</option>
-  <option value="BLOCKED" {blocked}>BLOCKED</option>
-  <option value="NOT EXECUTED" {notexecuted}>NOT EXECUTED</option>
-</select>
-""".format(
-        passed='selected' if auto_outcome == "PASSED" else '',
-        failed='selected' if auto_outcome == "FAILED" else '',
-        blocked='selected' if auto_outcome == "BLOCKED" else '',
-        notexecuted='selected' if auto_outcome == "NOT EXECUTED" else ''
-    )
+<details>
+  <summary>Click to view outcome options</summary>
+
+- PASSED  
+- FAILED  
+- BLOCKED  
+- NOT EXECUTED  
+</details>
+"""
     
     # Create the Markdown report content
     report = f"""# {test_case_id} Test Execution Report
@@ -128,7 +126,7 @@ def generate_tc_report(csv_file, config_file, output_file, test_case_id, objecti
 ---
 
 ## Conclusion 
-- **Test Outcome:** {auto_outcome}
+- **Test Outcome:** {auto_outcome}  
   {outcome_dropdown}
 - **Functional:** {functional_text}  
 - **Performance:** {performance_text}  
