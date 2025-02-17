@@ -43,7 +43,9 @@
 
 ---
 
-## Conclusion
+## Conclusion 
+- **Test Outcome:** **PASSED** ✅
+- The system **met** the expected criteria (no errors, response time well below 500 ms).
 - **Functional:** All CRUD operations (create, update, delete) passed with 0 failures.
 - **Performance:** The API performed within acceptable limits, with 95% of requests under 210 ms.
 - **Scalability:** The system handled the test load well with no errors, confirming stable performance under moderate load.
