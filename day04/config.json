@@ -1,6 +1,6 @@
 {
     "users": 10,
-    "spawn_rate": 5,
-    "duration": "1m",
+    "spawn_rate": 2,
+    "duration": "60s",
     "locust_file": "test_validateResponse.py"
 }

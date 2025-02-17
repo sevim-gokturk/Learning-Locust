@@ -52,4 +52,4 @@ class ReqresUser(HttpUser):
     host = "https://reqres.in"  # Base API URL for the test
     tasks = {ReqresUserTasks}  # Assigns the sequence of tasks to each user
 
-    #RUN: locust -f day03\test_validateResponse.py
+    #RUN: locust -f day04\test_validateResponse.py
