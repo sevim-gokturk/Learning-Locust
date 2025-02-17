@@ -57,17 +57,34 @@ def generate_tc_report(csv_file, config_file, output_file, test_case_id, objecti
     computed_html_report_link = os.path.join(os.path.dirname(csv_file), "report.html")
     computed_html_report_link = computed_html_report_link.replace("\\", "/")  # Ensure forward slashes
 
-    # Auto-calculate test outcome based on conditions
-    if total_failures == 0 and avg_rt < 1000:
-        auto_outcome = "PASSED"
+    # Auto-calculate test outcome based on conditions:
+    if total_requests == 0:
+        auto_outcome = "NOT EXECUTED"
     elif total_failures > 0:
         auto_outcome = "FAILED"
+    elif avg_rt < 1000:
+        auto_outcome = "PASSED"
     else:
         auto_outcome = "BLOCKED"
     
     # Generate auto-calculated conclusion parts for Functional and Performance
     functional_text = "All CRUD operations passed with 0 failures." if total_failures == 0 else f"Some operations failed with {total_failures} failures."
     performance_text = "The API performed within acceptable limits, with 95% of requests under 210 ms." if perc95 < 210 else f"Performance issue: 95th percentile is {perc95:.3f} ms."
+    
+    # Create an HTML dropdown snippet for test outcome selection
+    outcome_dropdown = """
+<select>
+  <option value="PASSED" {passed}>PASSED</option>
+  <option value="FAILED" {failed}>FAILED</option>
+  <option value="BLOCKED" {blocked}>BLOCKED</option>
+  <option value="NOT EXECUTED" {notexecuted}>NOT EXECUTED</option>
+</select>
+""".format(
+        passed='selected' if auto_outcome == "PASSED" else '',
+        failed='selected' if auto_outcome == "FAILED" else '',
+        blocked='selected' if auto_outcome == "BLOCKED" else '',
+        notexecuted='selected' if auto_outcome == "NOT EXECUTED" else ''
+    )
     
     # Create the Markdown report content
     report = f"""# {test_case_id} Test Execution Report
@@ -111,14 +128,8 @@ def generate_tc_report(csv_file, config_file, output_file, test_case_id, objecti
 ---
 
 ## Conclusion 
-- **Test Outcome:** {auto_outcome}  
-  <!-- Please select your test outcome manually if needed: -->
-  <select>
-      <option value="PASSED">PASSED</option>
-      <option value="FAILED">FAILED</option>
-      <option value="BLOCKED">BLOCKED</option>
-      <option value="NOT EXECUTED">NOT EXECUTED</option>
-  </select>
+- **Test Outcome:** {auto_outcome}
+  {outcome_dropdown}
 - **Functional:** {functional_text}  
 - **Performance:** {performance_text}  
 - **Scalability:** [Please fill scalability details manually]
@@ -148,11 +159,9 @@ endpoint_summary = """- **POST /api/users:**
 - **DELETE /api/users/{id}:**  
   - Deleted users with stable performance (response times ~110-120 ms)."""
 
-# Note: The following "Test Outcome" dropdown and "Scalability" field are intended for manual input.
-# The auto-calculated Functional and Performance texts are generated based on the CSV metrics.
+# The "Test Outcome" dropdown and "Scalability" field are intended for manual input.
 tested_by = "Sevim"
 test_date = "17/02/2025"
-# HTML report link will be auto-computed from the CSV file location.
 
 # Generate the report using the CSV and configuration files
 generate_tc_report(CSV_FILE, CONFIG_FILE, OUTPUT_FILE, "TC05", objective, endpoint_summary, tested_by, test_date)
