@@ -17,7 +17,7 @@ def load_config():
 # Function to create a timestamped report directory
 def create_report_directory():
     timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    report_dir = os.path.join("performance_reports", timestamp)
+    report_dir = os.path.join("../performance_reports", timestamp)
     os.makedirs(report_dir, exist_ok=True)
     return report_dir
 
